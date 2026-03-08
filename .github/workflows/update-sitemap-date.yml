@@ -19,7 +19,7 @@ jobs:
 
       - name: Update lastmod in sitemap.xml
         run: |
-          DATE=$(date +%Y-%m-%d)
+          DATE=$(TZ=Asia/Tokyo date +%Y-%m-%d)
           sed -i "s|<lastmod>.*</lastmod>|<lastmod>${DATE}</lastmod>|" sitemap.xml
           echo "lastmod を ${DATE} に更新"
 
