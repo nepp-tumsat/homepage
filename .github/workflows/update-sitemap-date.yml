@@ -18,11 +18,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Update lastmod in sitemap.xml
-        run: |
-          DATE=$(TZ=Asia/Tokyo date +%Y-%m-%d)
-          sed -i "s|<lastmod>.*</lastmod>|<lastmod>${DATE}</lastmod>|" sitemap.xml
-          echo "lastmod を ${DATE} に更新"
-
+        run: bash scripts/update-sitemap-date.sh
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
