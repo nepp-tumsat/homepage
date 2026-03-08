@@ -1,2 +1,2 @@
 ## サイトURL
-https://nepp-tumsat.github.io/homepage/
+https://nepp-tumsat.com
