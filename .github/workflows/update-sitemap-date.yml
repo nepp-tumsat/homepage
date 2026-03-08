@@ -1,0 +1,26 @@
+# push のたびに sitemap.xml の lastmod を今日の日付に更新する
+name: Update sitemap date
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - '**'  # 何か push されたら実行（sitemap だけの変更でないときも更新される）
+
+jobs:
+  update:
+    # bot 自身の push では実行しない（二重実行防止）
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # push するために必要
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update lastmod in sitemap.xml
+        run: bash scripts/update-sitemap-date.sh
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet sitemap.xml || (git add sitemap.xml && git commit -m "chore: sitemap lastmod を自動更新" && git push)

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nepp-tumsat.github.io/homepage/sitemap.xml
+Sitemap: https://nepp-tumsat.com/sitemap.xml
